@@ -363,27 +363,52 @@ function checkDependencies() {
 
 // ── Verify API key against EvoLink API ──────────────────────────────────────
 function verifyApiKey(key) {
+  // Try curl first (most systems), fall back to Node.js https
+  if (commandExists('curl')) {
+    try {
+      const result = spawnSync('curl', [
+        '--silent', '--show-error',
+        '--connect-timeout', '10',
+        '--max-time', '10',
+        '-w', '\n%{http_code}',
+        '-X', 'GET',
+        'https://api.evolink.ai/v1/credits',
+        '-H', `Authorization: Bearer ${key}`,
+      ], { encoding: 'utf8', stdio: 'pipe' });
+
+      const output = (result.stdout || '').trim();
+      const lines = output.split('\n');
+      const httpCode = lines[lines.length - 1];
+
+      if (httpCode === '200') {
+        return { valid: true };
+      } else if (httpCode === '401') {
+        return { valid: false, reason: 'Invalid API key' };
+      } else {
+        return { valid: false, reason: `API returned HTTP ${httpCode}` };
+      }
+    } catch (err) {
+      // curl failed, fall through to Node.js fallback
+    }
+  }
+
+  // Node.js https fallback (works on Windows without curl)
   try {
-    const result = spawnSync('curl', [
-      '--silent', '--show-error',
-      '--connect-timeout', '10',
-      '--max-time', '10',
-      '-w', '\n%{http_code}',
-      '-X', 'GET',
-      'https://api.evolink.ai/v1/credits',
-      '-H', `Authorization: Bearer ${key}`,
-    ], { encoding: 'utf8', stdio: 'pipe' });
+    const https = require('https');
+    const result = spawnSync(process.execPath, [
+      '-e',
+      `const https=require('https');const r=https.request('https://api.evolink.ai/v1/credits',{method:'GET',headers:{'Authorization':'Bearer ${key.replace(/'/g, "\\'")}'}, timeout:10000},res=>{process.stdout.write(String(res.statusCode));});r.on('error',e=>{process.stdout.write('ERR:'+e.message)});r.end();`,
+    ], { encoding: 'utf8', stdio: 'pipe', timeout: 15000 });
 
-    const output = (result.stdout || '').trim();
-    const lines = output.split('\n');
-    const httpCode = lines[lines.length - 1];
-
-    if (httpCode === '200') {
+    const code = (result.stdout || '').trim();
+    if (code === '200') {
       return { valid: true };
-    } else if (httpCode === '401') {
+    } else if (code === '401') {
       return { valid: false, reason: 'Invalid API key' };
+    } else if (code.startsWith('ERR:')) {
+      return { valid: false, reason: `Network error: ${code.slice(4)}` };
     } else {
-      return { valid: false, reason: `API returned HTTP ${httpCode}` };
+      return { valid: false, reason: `API returned HTTP ${code}` };
     }
   } catch (err) {
     return { valid: false, reason: `Network error: ${err.message}` };

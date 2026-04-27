@@ -14,7 +14,16 @@
 <p align="center">
   <strong>Languages:</strong>
   <a href="README.md">English</a> |
-  <a href="README.zh-CN.md">简体中文</a>
+  <a href="README.es.md">Español</a> |
+  <a href="README.pt.md">Português</a> |
+  <a href="README.ja.md">日本語</a> |
+  <a href="README.ko.md">한국어</a> |
+  <a href="README.de.md">Deutsch</a> |
+  <a href="README.fr.md">Français</a> |
+  <a href="README.tr.md">Türkçe</a> |
+  <a href="README.zh-TW.md">繁體中文</a> |
+  <a href="README.zh-CN.md">简体中文</a> |
+  <a href="README.ru.md">Русский</a>
 </p>
 
 ---
@@ -183,6 +192,36 @@ export EVOLINK_API_KEY=your_key_here
 # 批量生成
 ./scripts/gpt-image-gen.sh "像素风格的可爱机器人" --count 4 --quality high
 ```
+
+---
+
+## 文件结构
+
+```
+.
+├── README.md                    # 英文说明
+├── SKILL.md                     # 技能定义（供 AI Agent 使用）
+├── _meta.json                   # 技能元数据
+├── bin/
+│   └── cli.js                   # npm 安装器 CLI
+├── references/
+│   └── api-params.md            # 完整 API 参数参考
+└── scripts/
+    └── gpt-image-gen.sh         # 图像生成脚本
+```
+
+---
+
+## 常见问题
+
+| 问题 | 解决方案 |
+|------|----------|
+| `jq: command not found` | 安装 jq：`apt install jq` / `brew install jq` |
+| `401 Unauthorized` | 检查 `EVOLINK_API_KEY`：[evolink.ai/dashboard](https://evolink.ai/dashboard?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) |
+| `402 Payment Required` | 充值：[evolink.ai/dashboard](https://evolink.ai/dashboard?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) |
+| 内容被拦截 | 提示词触发了内容审核，请修改描述 |
+| 图片太大 | 参考图片每张不超过 50MB |
+| 生成超时 | 图像生成通常需要 5-90 秒，可先降低质量/分辨率 |
 
 ---
 
