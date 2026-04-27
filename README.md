@@ -1,4 +1,4 @@
-# GPT Image 2 Gen Skill for OpenClaw
+# GPT Image 2 Gen Skill
 
 <p align="center">
   <strong>AI image generation with GPT Image 2 — install in one command, start creating in seconds.</strong>
