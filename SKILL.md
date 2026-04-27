@@ -1,8 +1,8 @@
 ---
 name: gpt-image-2-gen
 description: GPT Image 2 AI image generation via EvoLink API. Supports text-to-image, image-to-image editing, batch generation. Multiple sizes (ratio & pixel), resolutions (1K/2K/4K), quality levels (low/medium/high). Works with OpenClaw, Claude Code, OpenCode, Cursor. Powered by OpenAI GPT Image 2.
-homepage: https://github.com/EvoLinkAI/gpt-image-2-gen-skill-for-openclaw
-metadata: {"openclaw":{"homepage":"https://github.com/EvoLinkAI/gpt-image-2-gen-skill-for-openclaw","requires":{"bins":["jq","curl"],"env":["EVOLINK_API_KEY"]},"primaryEnv":"EVOLINK_API_KEY"}}
+homepage: https://github.com/EvoLinkAI/gpt-image-2-gen-skill
+metadata: {"openclaw":{"homepage":"https://github.com/EvoLinkAI/gpt-image-2-gen-skill","requires":{"bins":["jq","curl"],"env":["EVOLINK_API_KEY"]},"primaryEnv":"EVOLINK_API_KEY"}}
 ---
 
 # GPT Image 2 Generation

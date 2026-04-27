@@ -20,6 +20,8 @@ const dim    = (s) => `\x1b[2m${s}\x1b[0m`;
 // ── Package root (resolve relative to this script) ───────────────────────────
 const PKG_ROOT = path.resolve(__dirname, '..');
 const SKILL_SLUG = 'gpt-image-2-gen';
+const PKG_JSON = JSON.parse(fs.readFileSync(path.join(PKG_ROOT, 'package.json'), 'utf8'));
+const PKG_VERSION = PKG_JSON.version;
 
 // ── Banner ────────────────────────────────────────────────────────────────────
 function printBanner() {
@@ -29,7 +31,7 @@ function printBanner() {
   console.log(bold(cyan('║') + '   ' + bold('🎨  GPT Image 2 Gen Skill Installer') + '                 ' + bold(cyan('║'))));
   console.log(bold(cyan('║') + '       ' + dim('for OpenClaw · Claude Code · OpenCode') + '            ' + bold(cyan('║'))));
   console.log(bold(cyan('║') + '       ' + dim('powered by EvoLink + OpenAI') + '                      ' + bold(cyan('║'))));
-  console.log(bold(cyan('║') + '                  ' + dim('v1.0.0') + '                                   ' + bold(cyan('║'))));
+  console.log(bold(cyan('║') + '                  ' + dim(`v${PKG_VERSION}`) + '                                   ' + bold(cyan('║'))));
   console.log(bold(cyan('║') + '                                                          ' + bold(cyan('║'))));
   console.log(bold(cyan('╚══════════════════════════════════════════════════════════╝')));
   console.log('');
@@ -484,7 +486,7 @@ function printSuccess(installPath) {
   console.log('  3. ' + dim('Start generating images! Example:'));
   console.log('     ' + dim('"Generate a beautiful sunset over the ocean in 4K"'));
   console.log('');
-  console.log(dim('  Docs:      https://github.com/EvoLinkAI/gpt-image-2-gen-skill-for-openclaw'));
+  console.log(dim('  Docs:      https://github.com/EvoLinkAI/gpt-image-2-gen-skill'));
   console.log(dim('  Dashboard: https://evolink.ai/dashboard'));
   console.log(dim('  Support:   https://evolink.ai'));
   console.log('');

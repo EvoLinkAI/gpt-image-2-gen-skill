@@ -8,7 +8,7 @@
   <a href="#gpt-image-2-generation">GPT Image 2</a> •
   <a href="#installation">Install</a> •
   <a href="#getting-an-api-key">API Key</a> •
-  <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill-for-openclaw">EvoLink</a>
+  <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill">EvoLink</a>
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@
 
 ## What is This?
 
-An [OpenClaw](https://github.com/openclaw/openclaw) / [Claude Code](https://github.com/anthropics/claude-code) / [OpenCode](https://github.com/opencode-ai/opencode) skill powered by [EvoLink](https://evolink.ai?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen). Install the skill and your AI agent gains the ability to generate and edit images using GPT Image 2.
+An [OpenClaw](https://github.com/openclaw/openclaw) / [Claude Code](https://github.com/anthropics/claude-code) / [OpenCode](https://github.com/opencode-ai/opencode) skill powered by [EvoLink](https://evolink.ai?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill). Install the skill and your AI agent gains the ability to generate and edit images using GPT Image 2.
 
 | Skill | Description | Model |
 |-------|-------------|-------|
@@ -38,7 +38,7 @@ An [OpenClaw](https://github.com/openclaw/openclaw) / [Claude Code](https://gith
 ### Quick Install (OpenClaw)
 
 ```bash
-openclaw skills add https://github.com/EvoLinkAI/gpt-image-2-gen-skill-for-openclaw
+openclaw skills add https://github.com/EvoLinkAI/gpt-image-2-gen-skill
 ```
 
 ### Install via npm (Recommended)
@@ -62,8 +62,8 @@ npx evolink-gpt-image -y --path ~/.claude/skills
 ### Manual Install
 
 ```bash
-git clone https://github.com/EvoLinkAI/gpt-image-2-gen-skill-for-openclaw.git
-cd gpt-image-2-gen-skill-for-openclaw
+git clone https://github.com/EvoLinkAI/gpt-image-2-gen-skill.git
+cd gpt-image-2-gen-skill
 openclaw skills add .
 ```
 
@@ -125,7 +125,7 @@ Replace `~/.claude/skills` with `~/.opencode/skills` or your agent's skill direc
 
 ## Getting an API Key
 
-1. Sign up at [evolink.ai](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill-for-openclaw)
+1. Sign up at [evolink.ai](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
 2. Go to Dashboard -> API Keys
 3. Create a new key
 4. Set it in your environment:
@@ -223,8 +223,8 @@ See [references/api-params.md](references/api-params.md) for complete API docume
 | Issue | Solution |
 |-------|---------|
 | `jq: command not found` | Install jq: `apt install jq` / `brew install jq` |
-| `401 Unauthorized` | Check your `EVOLINK_API_KEY` at [evolink.ai/dashboard](https://evolink.ai/dashboard?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen) |
-| `402 Payment Required` | Add credits at [evolink.ai/dashboard](https://evolink.ai/dashboard?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen) |
+| `401 Unauthorized` | Check your `EVOLINK_API_KEY` at [evolink.ai/dashboard](https://evolink.ai/dashboard?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) |
+| `402 Payment Required` | Add credits at [evolink.ai/dashboard](https://evolink.ai/dashboard?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) |
 | `Content blocked` | Prompt flagged by moderation — modify your description |
 | Image too large | Reference images must be <=50MB each |
 | Generation timeout | Images can take 5-90s. Try lower quality/resolution first. |
@@ -249,5 +249,5 @@ MIT
 ---
 
 <p align="center">
-  Powered by <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill-for-openclaw"><strong>EvoLink</strong></a> — Unified AI API Gateway
+  Powered by <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill"><strong>EvoLink</strong></a> — Unified AI API Gateway
 </p>

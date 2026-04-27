@@ -8,7 +8,7 @@
   <a href="#gpt-image-2-图像生成">GPT Image 2</a> •
   <a href="#安装">安装</a> •
   <a href="#获取-api-key">API Key</a> •
-  <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill-for-openclaw">EvoLink</a>
+  <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill">EvoLink</a>
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@
 
 ## 这是什么？
 
-一个适用于 [OpenClaw](https://github.com/openclaw/openclaw) / [Claude Code](https://github.com/anthropics/claude-code) / [OpenCode](https://github.com/opencode-ai/opencode) 的 AI 技能插件，由 [EvoLink](https://evolink.ai?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen) 驱动。安装后，你的 AI Agent 即可使用 GPT Image 2 模型进行图像生成和编辑。
+一个适用于 [OpenClaw](https://github.com/openclaw/openclaw) / [Claude Code](https://github.com/anthropics/claude-code) / [OpenCode](https://github.com/opencode-ai/opencode) 的 AI 技能插件，由 [EvoLink](https://evolink.ai?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) 驱动。安装后，你的 AI Agent 即可使用 GPT Image 2 模型进行图像生成和编辑。
 
 | 技能 | 描述 | 模型 |
 |------|------|------|
@@ -38,7 +38,7 @@
 ### 快速安装（OpenClaw）
 
 ```bash
-openclaw skills add https://github.com/EvoLinkAI/gpt-image-2-gen-skill-for-openclaw
+openclaw skills add https://github.com/EvoLinkAI/gpt-image-2-gen-skill
 ```
 
 ### 通过 npm 安装（推荐）
@@ -62,8 +62,8 @@ npx evolink-gpt-image -y --path ~/.claude/skills
 ### 手动安装
 
 ```bash
-git clone https://github.com/EvoLinkAI/gpt-image-2-gen-skill-for-openclaw.git
-cd gpt-image-2-gen-skill-for-openclaw
+git clone https://github.com/EvoLinkAI/gpt-image-2-gen-skill.git
+cd gpt-image-2-gen-skill
 openclaw skills add .
 ```
 
@@ -123,7 +123,7 @@ EVOLINK_API_KEY=你的key npx evolink-gpt-image@latest -y --path ~/.claude/skill
 
 ## 获取 API Key
 
-1. 注册 [evolink.ai](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill-for-openclaw)
+1. 注册 [evolink.ai](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
 2. 进入控制台 -> API Keys
 3. 创建新密钥
 4. 设置环境变量：
@@ -204,5 +204,5 @@ MIT
 ---
 
 <p align="center">
-  Powered by <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill-for-openclaw"><strong>EvoLink</strong></a> — 统一 AI API 网关
+  Powered by <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill"><strong>EvoLink</strong></a> — 统一 AI API 网关
 </p>
