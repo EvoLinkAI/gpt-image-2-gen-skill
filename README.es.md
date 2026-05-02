@@ -26,6 +26,12 @@
   <a href="README.ru.md">Русский</a>
 </p>
 
+<p align="center">
+  <a href="https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=banner&utm_campaign=gpt-image-2-gen-skill">
+    <img src="assets/banner.jpg" alt="GPT Image 2 banner" width="100%" />
+  </a>
+</p>
+
 ---
 
 > **¿Eres un AI Agent?** Salta el README — ve directamente a [**llms-install.md**](llms-install.md) para instrucciones de instalación paso a paso diseñadas para ti.
