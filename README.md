@@ -1,46 +1,69 @@
 # GPT Image 2 Gen Skill
 
 <p align="center">
-  <strong>AI image generation with GPT Image 2 — install in one command, start creating in seconds.</strong>
+  <strong>AI image generation with GPT Image 2, built for OpenClaw, Claude Code, OpenCode, and AI agents that need fast OpenAI-compatible image generation workflows.</strong>
 </p>
 
 <p align="center">
-  <a href="#gpt-image-2-generation">GPT Image 2</a> •
+  <a href="https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=banner&utm_campaign=gpt-image-2-gen-skill">
+    <img src="assets/banner.jpg" alt="GPT-Image-2-AI-Image-Generation-Skill-for-Claude-Code-OpenClaw-and-AI-Agents-by-EvoLinkAI" width="100%" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/evolink-gpt-image"><img src="https://img.shields.io/npm/v/evolink-gpt-image?color=cb3837&label=npm" alt="NPM version"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <a href="https://github.com/EvoLinkAI/gpt-image-2-gen-skill/stargazers"><img src="https://img.shields.io/github/stars/EvoLinkAI/gpt-image-2-gen-skill?style=flat" alt="GitHub stars"></a>
+  <a href="https://github.com/EvoLinkAI/gpt-image-2-gen-skill/commits/main/"><img src="https://img.shields.io/github/last-commit/EvoLinkAI/gpt-image-2-gen-skill" alt="Last commit"></a>
+</p>
+
+<p align="center">
+  <a href="#-menu">Menu</a> •
   <a href="#installation">Install</a> •
+  <a href="#-showcase">Showcase</a> •
+  <a href="#gpt-image-2-generation">GPT Image 2</a> •
   <a href="#getting-an-api-key">API Key</a> •
   <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill">EvoLink</a>
 </p>
 
 <p align="center">
-  <strong>Languages:</strong>
-  <a href="README.md">English</a> |
-  <a href="README.es.md">Español</a> |
-  <a href="README.pt.md">Português</a> |
-  <a href="README.ja.md">日本語</a> |
-  <a href="README.ko.md">한국어</a> |
-  <a href="README.de.md">Deutsch</a> |
-  <a href="README.fr.md">Français</a> |
-  <a href="README.tr.md">Türkçe</a> |
-  <a href="README.zh-TW.md">繁體中文</a> |
-  <a href="README.zh-CN.md">简体中文</a> |
-  <a href="README.ru.md">Русский</a>
-</p>
-
-<p align="center">
-  <a href="https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=banner&utm_campaign=gpt-image-2-gen-skill">
-    <img src="assets/banner.jpg" alt="GPT Image 2 banner" width="100%" />
-  </a>
+  <a href="README.md"><img src="https://img.shields.io/badge/🇺🇸_English-Read-111111" alt="English"></a>
+  <a href="README.es.md"><img src="https://img.shields.io/badge/🇪🇸_Español-Ver-ffb703" alt="Español"></a>
+  <a href="README.pt.md"><img src="https://img.shields.io/badge/🇵🇹_Português-Ver-2a9d8f" alt="Português"></a>
+  <a href="README.ja.md"><img src="https://img.shields.io/badge/🇯🇵_日本語-表示-52b788" alt="日本語"></a>
+  <a href="README.ko.md"><img src="https://img.shields.io/badge/🇰🇷_한국어-보기-4ea8de" alt="한국어"></a>
+  <a href="README.de.md"><img src="https://img.shields.io/badge/🇩🇪_Deutsch-Ansehen-f4a261" alt="Deutsch"></a>
+  <a href="README.fr.md"><img src="https://img.shields.io/badge/🇫🇷_Français-Voir-e76f51" alt="Français"></a>
+  <a href="README.tr.md"><img src="https://img.shields.io/badge/🇹🇷_Türkçe-Görüntüle-d62828" alt="Türkçe"></a>
+  <a href="README.zh-TW.md"><img src="https://img.shields.io/badge/🇹🇼_繁體中文-查看-8338ec" alt="繁體中文"></a>
+  <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/🇨🇳_简体中文-查看-ef476f" alt="简体中文"></a>
+  <a href="README.ru.md"><img src="https://img.shields.io/badge/🇷🇺_Русский-Смотреть-577590" alt="Русский"></a>
 </p>
 
 ---
 
-> **AI Agent?** Skip the README — go straight to [**llms-install.md**](llms-install.md) for step-by-step installation instructions designed for you.
+> **AI Agent?** Skip the README, go straight to [**llms-install.md**](llms-install.md) for step-by-step installation instructions designed for you.
+
+---
+
+## 📑 Menu
+
+- [What is This?](#what-is-this)
+- [Installation](#installation)
+- [Getting an API Key](#getting-an-api-key)
+- [Showcase](#-showcase)
+- [GPT Image 2 Generation](#gpt-image-2-generation)
+- [File Structure](#file-structure)
+- [Troubleshooting](#troubleshooting)
+- [Compatibility](#compatibility)
+- [License](#license)
+- [Community](#community)
 
 ---
 
 ## What is This?
 
-An [OpenClaw](https://github.com/openclaw/openclaw) / [Claude Code](https://github.com/anthropics/claude-code) / [OpenCode](https://github.com/opencode-ai/opencode) skill powered by [EvoLink](https://evolink.ai?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill). Install the skill and your AI agent gains the ability to generate and edit images using GPT Image 2.
+**GPT Image 2 Gen Skill** is an **AI agent image generation skill** for [OpenClaw](https://github.com/openclaw/openclaw), [Claude Code](https://github.com/anthropics/claude-code), and [OpenCode](https://github.com/opencode-ai/opencode), powered by [EvoLink](https://evolink.ai?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill). It gives your agent a fast **OpenAI-compatible API integration** for GPT Image 2, including text-to-image, image editing, batch generation, and multi-size output workflows.
 
 | Skill | Description | Model |
 |-------|-------------|-------|
@@ -150,6 +173,16 @@ export EVOLINK_API_KEY=your_key_here
 ```
 
 Or tell your AI agent: *"Set my EvoLink API key to ..."* — it will handle the rest.
+
+---
+
+## 🖼️ Showcase
+
+| Portrait Styling | Product Marketing | Character Design |
+|---|---|---|
+| <img src="assets/showcase/portrait.jpg" alt="Portrait styling image generated with GPT Image 2" width="100%"> | <img src="assets/showcase/product.jpg" alt="Product marketing visual generated with GPT Image 2" width="100%"> | <img src="assets/showcase/character.jpg" alt="Character design concept generated with GPT Image 2" width="100%"> |
+
+> These examples were selected from the [awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts) repository. Install the skill, connect your EvoLink API key, and use the [GPT Image 2 image generation docs](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) to create similar outputs.
 
 ---
 
@@ -263,6 +296,19 @@ MIT
 
 ---
 
+## Community
+
+- Docs: [GPT Image 2 image generation manual](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- EvoLink: [Create an API key](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- Workflow repo: [GPT-Image-2 × Seedance 2.0](https://github.com/EvoLinkAI/GPT-Image-2-Seedance2-Workflow)
+- Follow EvoLinkAI: [x.com/EvoLinkAI](https://x.com/EvoLinkAI)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=EvoLinkAI/gpt-image-2-gen-skill&type=Date)](https://www.star-history.com/#EvoLinkAI/gpt-image-2-gen-skill&Date)
+
+---
+
 <p align="center">
-  Powered by <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill"><strong>EvoLink</strong></a> — Unified AI API Gateway
+  Powered by <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill"><strong>EvoLink</strong></a> , Unified AI API Gateway
 </p>
