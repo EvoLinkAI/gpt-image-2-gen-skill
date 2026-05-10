@@ -3,9 +3,8 @@
 import argparse
 import json
 import os
+import subprocess
 import sys
-import urllib.error
-import urllib.request
 
 
 PACKY_API_BASE = "https://www.packyapi.com"
@@ -126,19 +125,43 @@ def parse_args(argv) -> ParsedArgs:
     )
 
 def submit(payload, api_key: str) -> str:
-    body = json.dumps(payload).encode("utf-8")
-    request = urllib.request.Request(
-        f"{PACKY_API_BASE}/v1/images/generations",
-        data=body,
-        method="POST",
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json",
-        },
+    body = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+    request_headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+        "Accept": "*/*",
+        "Host": "www.packyapi.com",
+        "Connection": "keep-alive",
+    }
+    request_url = f"{PACKY_API_BASE}/v1/images/generations"
+    curl_command = [
+        "curl.exe",
+        "--silent",
+        "--show-error",
+        "--location",
+        "--request",
+        "POST",
+        request_url,
+    ]
+    for name, value in request_headers.items():
+        curl_command.extend(["--header", f"{name}: {value}"])
+    curl_command.extend(["--data", body])
+
+    completed = subprocess.run(
+        curl_command,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        timeout=10*60,
     )
-    
-    with urllib.request.urlopen(request, timeout=30) as response:
-        return response.read().decode("utf-8")
+
+    response_body = completed.stdout
+    if completed.returncode != 0:
+        stderr_message = completed.stderr.strip()
+        raise PackyApiError(f"curl request failed with exit code {completed.returncode}: {stderr_message}")
+
+    return response_body
 
 def main(argv):
     api_key = os.environ.get("PACKY_API_KEY", "")
@@ -181,8 +204,4 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    try:
-        main(sys.argv[1:])
-    except PackyApiError as exc:
-        sys.stderr.write(f"ERROR: {exc}\n")
-        raise SystemExit(1)
+    main(sys.argv[1:])
