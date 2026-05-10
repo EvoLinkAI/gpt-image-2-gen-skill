@@ -11,6 +11,10 @@ import urllib.request
 PACKY_API_BASE = "https://www.packyapi.com"
 
 
+class PackyApiError(Exception):
+    pass
+
+
 class ParsedArgs:
     def __init__(self, prompt, size, quality, count, output_format, dry_run):
         self.prompt = prompt
@@ -47,19 +51,19 @@ class ParsedArgs:
         normalized = self.size.replace("×", "x")
         parts = normalized.split("x")
         if len(parts) != 2 or not all(part.isdigit() for part in parts):
-            error("Invalid size format. Use ratio (e.g. 16:9), pixels (e.g. 1024x1024), or 'auto'")
+            raise PackyApiError("Invalid size format. Use ratio (e.g. 16:9), pixels (e.g. 1024x1024), or 'auto'")
 
         width = int(parts[0])
         height = int(parts[1])
 
         if width % 16 != 0 or height % 16 != 0:
-            error(f"Width and height must be multiples of 16. Got {width}x{height}")
+            raise PackyApiError(f"Width and height must be multiples of 16. Got {width}x{height}")
         if width < 16 or width > 3840 or height < 16 or height > 3840:
-            error(f"Each dimension must be between 16-3840 pixels. Got {width}x{height}")
+            raise PackyApiError(f"Each dimension must be between 16-3840 pixels. Got {width}x{height}")
 
         pixels = width * height
         if pixels < 655360 or pixels > 8294400:
-            error(f"Pixel budget must be 655,360-8,294,400. Got {pixels} ({width}x{height})")
+            raise PackyApiError(f"Pixel budget must be 655,360-8,294,400. Got {pixels} ({width}x{height})")
 
     def to_payload(self):
         return {
@@ -71,12 +75,6 @@ class ParsedArgs:
             "output_format": self.output_format,
             "n": self.count,
         }
-
-
-def error(message: str) -> None:
-    sys.stderr.write(f"ERROR: {message}\n")
-    raise SystemExit(1)
-
 def parse_args(argv) -> ParsedArgs:
     parser = argparse.ArgumentParser(
         prog="packy_gpt_image.py",
@@ -111,12 +109,12 @@ def parse_args(argv) -> ParsedArgs:
     parsed, unknown = parser.parse_known_args(argv)
     for arg in unknown:
         if arg in {"--resolution", "--callback", "--image"}:
-            error(f"{arg} is not supported by the Packy provider helper")
+            raise PackyApiError(f"{arg} is not supported by the Packy provider helper")
     if unknown:
-        error(f"Unknown parameter: {unknown[0]}")
+        raise PackyApiError(f"Unknown parameter: {unknown[0]}")
 
     if parsed.count != 1:
-        error("Packy only supports --count 1 for gpt-image-2")
+        raise PackyApiError("Packy only supports --count 1 for gpt-image-2")
 
     return ParsedArgs(
         prompt=parsed.prompt,
@@ -145,7 +143,7 @@ def submit(payload, api_key: str) -> str:
 def main(argv):
     api_key = os.environ.get("PACKY_API_KEY", "")
     if not api_key:
-        error(
+        raise PackyApiError(
             "PACKY_API_KEY environment variable is required.\n\n"
             "To get started:\n"
             "1. Register at: https://www.packyapi.com\n"
@@ -168,27 +166,23 @@ def main(argv):
     )
     response_body = submit(payload, api_key)
 
-    try:
-        parsed = json.loads(response_body)
-    except json.JSONDecodeError:
-        error(f"Packy returned invalid JSON: {response_body}")
-
+    parsed = json.loads(response_body)
     results = parsed.get("data", [])
     if not isinstance(results, list) or not results:
-        print(f"RESULT_JSON={json.dumps(parsed, ensure_ascii=True, separators=(',', ':'))}")
-        error("Packy response did not include any image URLs")
+        raise PackyApiError("Packy response did not include any image URLs")
 
     found_url = False
     for item in results:
         if isinstance(item, dict) and item.get("url"):
             print(f"IMAGE_URL={item['url']}")
             found_url = True
-
-    print(f"RESULT_JSON={json.dumps(parsed, ensure_ascii=True, separators=(',', ':'))}")
-
     if not found_url:
-        error("Packy response did not include any image URLs")
+        raise PackyApiError("Packy response did not include any image URLs")
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    try:
+        main(sys.argv[1:])
+    except PackyApiError as exc:
+        sys.stderr.write(f"ERROR: {exc}\n")
+        raise SystemExit(1)
