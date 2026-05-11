@@ -27,15 +27,15 @@ Use this document only when the selected provider is `packy`.
 ## Command Pattern
 
 ```bash
-PACKY_API_KEY=$PACKY_API_KEY python {SKILL_DIR}/scripts/packyapi.py "prompt" [options]
+python {SKILL_DIR}/scripts/packyapi.py "prompt" [options]
 ```
 
 Examples:
 
 ```bash
-PACKY_API_KEY=$PACKY_API_KEY python {SKILL_DIR}/scripts/packyapi.py "A beautiful sunset over the ocean"
-PACKY_API_KEY=$PACKY_API_KEY python {SKILL_DIR}/scripts/packyapi.py "Minimalist logo design" --size 1024x1024 --quality medium
-PACKY_API_KEY=$PACKY_API_KEY python {SKILL_DIR}/scripts/packyapi.py "Cinematic skyline at dusk" --size 16:9 --quality high --output-format png
+python {SKILL_DIR}/scripts/packyapi.py "A beautiful sunset over the ocean"
+python {SKILL_DIR}/scripts/packyapi.py "Minimalist logo design" --size 1024x1024 --quality medium
+python {SKILL_DIR}/scripts/packyapi.py "Cinematic skyline at dusk" --size 16:9 --quality high --output-format png
 ```
 
 ## Parameters
