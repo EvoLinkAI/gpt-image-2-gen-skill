@@ -21,7 +21,7 @@ Authorization: Bearer {EVOLINK_API_KEY}
 
 | Model | Use Case | Key Inputs |
 |-------|----------|------------|
-| `gpt-image-2` | Text-to-image, image editing, batch generation | prompt (+ optional reference images) |
+| `gpt-image-2` | Text-to-image, image editing, image-to-image, batch generation | prompt (+ optional reference images) |
 
 ## Parameters
 
@@ -29,7 +29,7 @@ Authorization: Bearer {EVOLINK_API_KEY}
 |-----------|------|---------|----------|-------------|
 | `model` | string | — | Yes | Must be `gpt-image-2` |
 | `prompt` | string | — | Yes | Image description or editing instructions. Max 32,000 characters (Unicode) |
-| `image_urls` | array | — | No | Reference image URLs for editing (1-16 images, <=50MB each). Formats: .jpeg, .jpg, .png, .webp |
+| `image_urls` | array | — | No | Reference images for editing or image-to-image (1-16 images, <=50MB each). Common helpers may accept direct URLs, data URLs, or local files that are converted before submission. Formats: .jpeg, .jpg, .png, .webp |
 | `size` | string | `auto` | No | Image dimensions — ratio, pixel, or auto (see Size section) |
 | `resolution` | string | `1K` | No | Resolution tier: 1K, 2K, 4K. Only with ratio sizes |
 | `quality` | string | `medium` | No | Render quality: low, medium, high |
@@ -111,7 +111,7 @@ Text input tokens scale linearly with `n` (count).
 
 ---
 
-## Image Editing (image_urls)
+## Image Editing and Image-to-Image (image_urls)
 
 - **Count**: 1-16 images per request
 - **Max size per image**: 50MB

@@ -2,65 +2,84 @@
 
 import argparse
 import json
+import os
 import sys
 
-from packy_common import PackyApiError, emit_results, require_api_key, submit_json, validate_size
+from packy_common import PackyApiError, emit_results, require_api_key, submit_form, validate_size
 
 
 class ParsedArgs:
     def __init__(
         self,
         prompt,
+        image,
         size,
         quality,
-        count,
         output_format,
+        mask,
+        input_fidelity,
         output_compression,
         background,
         moderation,
-        user,
         response_format,
         dry_run,
     ):
         self.prompt = prompt
+        self.image = image
         self.size = size
         self.quality = quality
-        self.count = count
         self.output_format = output_format
+        self.mask = mask
+        self.input_fidelity = input_fidelity
         self.output_compression = output_compression
         self.background = background
         self.moderation = moderation
-        self.user = user
         self.response_format = response_format
         self.dry_run = dry_run
 
-    def to_payload(self):
-        payload = {
+    def validate(self):
+        validate_size(self.size)
+        if not os.path.isfile(self.image):
+            raise PackyApiError(f"Image input not found: {self.image}")
+        if self.mask and not os.path.isfile(self.mask):
+            raise PackyApiError(f"Mask input not found: {self.mask}")
+        if self.output_format == "webp":
+            raise PackyApiError("Packy image edits recommend png or jpeg output. Do not use webp for edits")
+        if self.output_compression is not None and self.output_format != "jpeg":
+            raise PackyApiError("--output-compression is only supported when --output-format is jpeg")
+        if self.output_compression is not None and not 0 <= self.output_compression <= 100:
+            raise PackyApiError("--output-compression must be between 0 and 100")
+        if self.background == "transparent":
+            raise PackyApiError("Packy image edits do not support transparent background")
+
+    def to_fields(self):
+        fields = {
             "model": "gpt-image-2",
             "prompt": self.prompt,
             "size": self.size,
             "quality": self.quality,
             "response_format": self.response_format,
             "output_format": self.output_format,
-            "n": self.count,
+            "n": 1,
         }
+        if self.input_fidelity is not None:
+            fields["input_fidelity"] = self.input_fidelity
         if self.output_compression is not None:
-            payload["output_compression"] = self.output_compression
+            fields["output_compression"] = self.output_compression
         if self.background is not None:
-            payload["background"] = self.background
+            fields["background"] = self.background
         if self.moderation is not None:
-            payload["moderation"] = self.moderation
-        if self.user is not None:
-            payload["user"] = self.user
-        return payload
+            fields["moderation"] = self.moderation
+        return fields
 
 
-def parse_args(argv) -> ParsedArgs:
+def parse_args(argv):
     parser = argparse.ArgumentParser(
-        prog="packy_gpt_image.py",
-        description="Submit GPT Image 2 generation requests through Packy.",
+        prog="packy_edit.py",
+        description="Submit GPT Image 2 image edit requests through Packy.",
     )
     parser.add_argument("prompt")
+    parser.add_argument("--image", required=True, help="Local source image file path")
     parser.add_argument("--size", default="auto", help="Image size, such as 1024x1024 or auto")
     parser.add_argument(
         "--quality",
@@ -69,16 +88,16 @@ def parse_args(argv) -> ParsedArgs:
         help="Render quality",
     )
     parser.add_argument(
-        "--count",
-        type=int,
-        default=1,
-        help="Number of images to generate (Packy only supports 1)",
-    )
-    parser.add_argument(
         "--output-format",
         choices=["png", "jpeg", "webp"],
         default="png",
         help="Output image format",
+    )
+    parser.add_argument("--mask", help="Optional PNG mask file path for localized image edits")
+    parser.add_argument(
+        "--input-fidelity",
+        choices=["high"],
+        help="Preserve the source subject and details",
     )
     parser.add_argument(
         "--output-compression",
@@ -88,14 +107,13 @@ def parse_args(argv) -> ParsedArgs:
     parser.add_argument(
         "--background",
         choices=["opaque", "transparent"],
-        help="Background mode. Use opaque for Packy generation",
+        help="Background mode. Use opaque for Packy edits",
     )
     parser.add_argument(
         "--moderation",
         choices=["auto", "low"],
         help="Safety moderation mode",
     )
-    parser.add_argument("--user", help="Optional end-user or business identifier")
     parser.add_argument(
         "--response-format",
         choices=["url", "b64_json"],
@@ -110,29 +128,22 @@ def parse_args(argv) -> ParsedArgs:
 
     parsed, unknown = parser.parse_known_args(argv)
     for arg in unknown:
-        if arg in {"--resolution", "--callback", "--image", "--mask", "--input-fidelity", "--style", "--stream", "--partial_images"}:
-            raise PackyApiError(f"{arg} is not supported by the Packy provider helper")
+        if arg in {"--count", "--resolution", "--callback"}:
+            raise PackyApiError(f"{arg} is not supported by the Packy edit helper")
     if unknown:
         raise PackyApiError(f"Unknown parameter: {unknown[0]}")
 
-    if parsed.count != 1:
-        raise PackyApiError("Packy only supports --count 1 for gpt-image-2")
-    if parsed.output_compression is not None and not 0 <= parsed.output_compression <= 100:
-        raise PackyApiError("--output-compression must be between 0 and 100")
-    if parsed.output_compression is not None and parsed.output_format != "jpeg":
-        raise PackyApiError("--output-compression is only supported when --output-format is jpeg")
-    if parsed.background == "transparent":
-        raise PackyApiError("Packy generation does not support transparent background")
     return ParsedArgs(
         prompt=parsed.prompt,
+        image=parsed.image,
         size=parsed.size,
         quality=parsed.quality,
-        count=parsed.count,
         output_format=parsed.output_format,
+        mask=parsed.mask,
+        input_fidelity=parsed.input_fidelity,
         output_compression=parsed.output_compression,
         background=parsed.background,
         moderation=parsed.moderation,
-        user=parsed.user,
         response_format=parsed.response_format,
         dry_run=parsed.dry_run,
     )
@@ -141,19 +152,24 @@ def parse_args(argv) -> ParsedArgs:
 def main(argv):
     api_key = require_api_key()
     args = parse_args(argv)
-    validate_size(args.size)
-    payload = args.to_payload()
+    args.validate()
+    fields = args.to_fields()
 
     if args.dry_run:
-        print("DRY_RUN: model=gpt-image-2 provider=packy mode=generation")
-        print(json.dumps(payload, ensure_ascii=True, indent=2))
+        print("DRY_RUN: model=gpt-image-2 provider=packy mode=edit")
+        print(json.dumps(fields, ensure_ascii=True, indent=2))
+        print(f"EDIT_IMAGE={args.image}")
+        if args.mask:
+            print(f"EDIT_MASK={args.mask}")
         return
 
     print(
-        f"INFO: Submitting image generation request (provider=packy, model=gpt-image-2, size={args.size}, quality={args.quality}, count={args.count})"
+        f"INFO: Submitting image edit request (provider=packy, model=gpt-image-2, size={args.size}, quality={args.quality}, image={args.image})"
     )
-    response_body = submit_json("/v1/images/generations", payload, api_key)
-
+    files = {"image": args.image}
+    if args.mask:
+        files["mask"] = args.mask
+    response_body = submit_form("/v1/images/edits", fields, files, api_key)
     emit_results(response_body)
 
 
