@@ -49,10 +49,10 @@ python {SKILL_DIR}/scripts/packy_edit.py "Only replace the background with a lig
 - `--quality <low|medium|high|auto>`
 - `--count 1`
 - `--output-compression <0-100>` for JPEG output only
-- `--background <opaque|transparent>`
+- `--background <opaque>`
 - `--moderation <auto|low>`
 - `--user <string>`
-- `--response-format <url|b64_json>`
+- `--response-format <url>`
 - `--output-format <png|jpeg|webp>`
 - `--dry-run`
 
@@ -79,6 +79,8 @@ There is no separate task submission, polling, or timeout recovery protocol like
 - `--mask` is optional and should usually be a PNG file for local edit regions.
 - Prefer `--input-fidelity high` when the user wants to preserve the original subject and details.
 - Prefer `png` or `jpeg` output for edits. Do not recommend `webp`.
+- `transparent` background is not supported by the current helper for either generation or edits.
+- The current helper intentionally only supports `response_format=url`.
 
 ## Output Protocol
 

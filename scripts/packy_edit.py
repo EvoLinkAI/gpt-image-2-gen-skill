@@ -116,9 +116,9 @@ def parse_args(argv):
     )
     parser.add_argument(
         "--response-format",
-        choices=["url", "b64_json"],
+        choices=["url"],
         default="url",
-        help="Response format",
+        help="Response format. Only url is supported by this helper",
     )
     parser.add_argument(
         "--dry-run",
