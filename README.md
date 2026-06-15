@@ -44,21 +44,6 @@
 
 > **AI Agent?** Skip the README, go straight to [**llms-install.md**](llms-install.md) for step-by-step installation instructions designed for you.
 
-## EvoLink Quick Start
-
-Install the skill, set one API key, and call GPT Image 2 from an agent or terminal:
-
-- Model page: [GPT Image 2 on EvoLink](https://evolink.ai/gpt-image-2-prompts?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
-- API docs: [GPT Image 2 image generation](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
-- API key: [create an EvoLink API key](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
-- Prompt library: [awesome-gpt-image-2-API-and-Prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts)
-
-```bash
-npx evolink-gpt-image -y
-export EVOLINK_API_KEY="your_key_here"
-./scripts/gpt-image-gen.sh "A clean SaaS dashboard hero image, realistic laptop screen, studio lighting"
-```
-
 ---
 
 ## 📑 Menu
@@ -87,6 +72,13 @@ export EVOLINK_API_KEY="your_key_here"
 ---
 
 ## Installation
+
+Useful setup links:
+
+- [Open GPT Image 2 on EvoLink](https://evolink.ai/gpt-image-2-prompts?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- [Read GPT Image 2 API docs](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- [Get your EvoLink API key](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- [Browse GPT Image 2 prompt examples](https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts)
 
 ### Quick Install (OpenClaw)
 
@@ -197,7 +189,7 @@ Or tell your AI agent: *"Set my EvoLink API key to ..."* — it will handle the 
 |---|---|---|
 | <img src="assets/showcase/portrait.jpg" alt="Portrait styling image generated with GPT Image 2" width="100%"> | <img src="assets/showcase/product.jpg" alt="Product marketing visual generated with GPT Image 2" width="100%"> | <img src="assets/showcase/character.jpg" alt="Character design concept generated with GPT Image 2" width="100%"> |
 
-> These examples were selected from the [awesome-gpt-image-2-prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-prompts) repository. Install the skill, connect your EvoLink API key, and use the [GPT Image 2 image generation docs](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) to create similar outputs.
+> These examples were selected from the [awesome-gpt-image-2-API-and-Prompts](https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts) repository. Install the skill, connect your EvoLink API key, and use the [GPT Image 2 image generation docs](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill) to create similar outputs.
 
 ---
 
