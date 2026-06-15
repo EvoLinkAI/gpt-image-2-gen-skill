@@ -44,6 +44,30 @@
 
 > **AI Agent?** Skip the README, go straight to [**llms-install.md**](llms-install.md) for step-by-step installation instructions designed for you.
 
+## EvoLink Quick Start
+
+Install the skill, set one API key, and call GPT Image 2 from an agent or terminal:
+
+- [Open the GPT Image 2 model page](https://evolink.ai/gpt-image-2-prompts?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- [Read GPT Image 2 API docs](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- [Get your EvoLink API key](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
+- [Browse GPT Image 2 prompt examples](https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts)
+- [Open the GPT Image 2 to Seedance 2.0 workflow](https://github.com/EvoLinkAI/GPT-Image-2-Seedance2-Workflow)
+
+```bash
+npx evolink-gpt-image -y
+export EVOLINK_API_KEY="your_key_here"
+
+curl --request POST \
+  --url https://api.evolink.ai/v1/images/generations \
+  --header "Authorization: Bearer ${EVOLINK_API_KEY}" \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "model": "gpt-image-2",
+    "prompt": "A clean SaaS dashboard hero image, realistic laptop screen, studio lighting"
+  }'
+```
+
 ---
 
 ## 📑 Menu
