@@ -99,14 +99,7 @@ curl --request POST \
 
 ## Installation
 
-Useful setup links:
-
-- [Open GPT Image 2 on EvoLink](https://evolink.ai/gpt-image-2-prompts?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
-- [Read GPT Image 2 API docs](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
-- [Get your EvoLink API key](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
-- [Browse GPT Image 2 prompt examples](https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts)
-
-### Quick Install (OpenClaw)
+### OpenClaw Install
 
 ```bash
 openclaw skills add https://github.com/EvoLinkAI/gpt-image-2-gen-skill
