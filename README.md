@@ -53,7 +53,7 @@ Install the skill, set one API key, and call GPT Image 2 from an agent or termin
   <a href="https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill"><strong>Docs</strong></a> &nbsp;·&nbsp;
   <a href="https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill"><strong>API Key</strong></a> &nbsp;·&nbsp;
   <a href="https://github.com/EvoLinkAI/awesome-gpt-image-2-API-and-Prompts"><strong>GPT Image Prompts</strong></a> &nbsp;·&nbsp;
-  <a href="https://github.com/EvoLinkAI/GPT-Image-2-Seedance2-Workflow"><strong>Workflow</strong></a>
+  <a href="https://github.com/EvoLinkAI/GPT-Image-2-Seedance-2.5-Workflow"><strong>Workflow</strong></a>
 </p>
 
 ```bash
@@ -326,7 +326,7 @@ MIT
 
 - Docs: [GPT Image 2 image generation manual](https://docs.evolink.ai/en/api-manual/image-series/gpt-image-2/gpt-image-2-image-generation?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
 - EvoLink: [Create an API key](https://evolink.ai/signup?utm_source=github&utm_medium=readme&utm_campaign=gpt-image-2-gen-skill)
-- Workflow repo: [GPT-Image-2 × Seedance 2.0](https://github.com/EvoLinkAI/GPT-Image-2-Seedance2-Workflow)
+- Workflow repo: [GPT-Image-2 × Seedance 2.5](https://github.com/EvoLinkAI/GPT-Image-2-Seedance-2.5-Workflow)
 - Follow EvoLinkAI: [x.com/EvoLinkAI](https://x.com/EvoLinkAI)
 
 ## Star History
